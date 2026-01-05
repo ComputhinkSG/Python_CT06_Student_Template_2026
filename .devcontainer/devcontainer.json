@@ -1,26 +1,16 @@
 {
-    "image": "mcr.microsoft.com/devcontainers/universal:2",
-    "features": {
-        "ghcr.io/devcontainers/features/desktop-lite:1": {}
-    },
-    "forwardPorts": [6080],  // Forwarding the desktop-lite port
-    "portsAttributes": {
-        "6080": {
-            "label": "desktop"
-        }
-    },
+    "image": "mcr.microsoft.com/devcontainers/python:3.9",
     "customizations": {
         "vscode": {
             "extensions": [
-                "ms-vsliveshare.vsliveshare",  // Live Share extension
-                "ms-python.python",  // Python extension
-                "vsls-contrib.gitdoc"  // Ensure GitDoc is listed here for automatic installation
+                "ms-python.python",
+                "ms-vsliveshare.vsliveshare",
             ],
             "settings": {
-                "gitdoc.enabled": true,
-                "git.autofetch": true,
-                "gitdoc.autoCommitDelay": 5000
+                "editor.fontSize": 16 //big
             }
         }
-    }
+    },
+    "postCreateCommand": "pip install -r requirements.txt && python -m ipykernel install --user --name devcontainer_kernel --display-name 'Python (Dev Container)'",
+    "forwardPorts": []
 }
